@@ -36,3 +36,46 @@ if development dependencies are missing run:
 ```
 npm install --only=dev
 ```
+## webpack.config.json
+
+`entry`: Specifies the entry file where the bundler starts the bundling process.
+`output`: Specifies the location where the bundled Javascript code is to be saved.
+```
+  entry: './client/index.js',
+  output: {
+    path: path.resolve('dist'),
+    filename: 'index_bundle.js'
+  }
+```
+
+`loaders` are transformations applied to the files.
+`babel-loader` goes through and transpiles every file that ends with a `.js` or `.jsx`.
+```
+loaders: [
+  //transform js and JSX files
+  { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
+  { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
+]
+```
+
+`inject` tells the plugin to inject the bundled content at the bottom of `body`
+```
+const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
+  template: './client/index.html',
+  filename: 'index.html',
+  inject: 'body'
+});
+
+...
+
+plugins: [HtmlWebpackPluginConfig]
+```
+### package.json
+`start` runs development server `http://localhost:8080`.
+`build` creates the production build on `dist` folder.
+```
+"scripts": {
+    "start": "webpack-dev-server",
+    "build": "webpack -p"
+  }
+```
