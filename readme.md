@@ -27,7 +27,7 @@ Read the [docs](https://yarnpkg.com/en/docs/usage) for more info about yarn usag
 
 `yarn.lock` contains the list of dependencies with the correct version for this project. This file is generated when installing dependencies using yarn
 
-## initial Set up **npm**
+## initial Set up *npm*
 run :
 ```
 npm install
